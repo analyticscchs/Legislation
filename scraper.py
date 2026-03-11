@@ -222,6 +222,53 @@ def get_schedule_url(chamber, ga_number):
         return ""  # old session — no future hearings possible
     return SCHEDULE_URLS.get(chamber, "https://www.ilga.gov/House/Schedules")
 
+def get_witness_slip_url(bill):
+    """
+    Checks whether ILGA currently has witness slips open for this bill.
+    Returns the witness slip page URL if a hearing is scheduled, or None if not.
+    ILGA returns a 500 server error when no hearings exist, so a successful
+    page load is itself the signal that slips are available.
+    """
+    if str(bill.get("ga_number")) != "104":
+        return None  # old session bills never have open witness slips
+
+    try:
+        # Fetch the bill status page and find the Witness Slips tab link.
+        # That link contains the correct internal LegId for this bill.
+        bill_url = build_bill_page_url(bill)
+        time.sleep(0.3)
+        response = requests.get(bill_url, timeout=10)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, "lxml")
+
+        # Find the Witness Slips navigation tab link on the bill page
+        slip_link = None
+        for a in soup.find_all("a", href=True):
+            if "WitnessSlips" in a["href"]:
+                slip_link = a["href"]
+                break
+
+        if not slip_link:
+            return None
+
+        slip_url = ("https://www.ilga.gov" + slip_link
+                    if slip_link.startswith("/") else slip_link)
+
+        # Fetch the witness slip page.
+        # ILGA returns 500 when no hearings are scheduled — that means no slips.
+        slip_response = requests.get(slip_url, timeout=10)
+        if slip_response.status_code != 200:
+            return None
+
+        # Double-check the page actually has hearing content
+        if "CreateWitnessSlip" in slip_response.text or "Posting Date" in slip_response.text:
+            return slip_url
+
+        return None
+
+    except Exception:
+        return None
 
 # ---------------------------------------------------------------------------
 # HELPERS
@@ -382,6 +429,7 @@ def scrape_bill(bill):
         "synopsis":         xml_data["synopsis"],
         "bill_page_url":    build_bill_page_url(bill),
         "fulltext_url":     build_fulltext_url(bill),
+        "witness_slip_url": get_witness_slip_url(bill),
     }
 
 
