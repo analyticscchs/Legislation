@@ -72,6 +72,20 @@ BILLS = [
         **SESSION_104,
     },
 
+    {
+    "friendly_name": "SB2990",
+    "bill_type": "SB",
+    "bill_number": "2990",
+    "witness_slip_url": "https://www.ilga.gov/senate/hearings/details/3069/22551/CreateWitnessSlip/?legislationId=165485&GaId=18&View=Create",
+    **SESSION_104,
+    },
+    {
+    "friendly_name": "SB2891",
+    "bill_type": "SB",
+    "bill_number": "2891",
+    **SESSION_104,
+    },
+
     # IACA Disclosure — bill number TBD, placeholder until correct number confirmed
     # Uncomment and fill in the number when ready:
     # {
