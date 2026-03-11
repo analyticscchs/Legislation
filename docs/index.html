@@ -24,6 +24,8 @@
       --pending-bg: #edf1f7;
       --dead: #7a3a3a;
       --dead-bg: #f7edec;
+      --cta: #7a3a6a;
+      --cta-bg: #f7ecf5;
     }
 
     body {
@@ -182,6 +184,24 @@
     .status-pending { background: var(--pending-bg); color: var(--pending); border: 1px solid #b8c9de; }
     .status-dead    { background: var(--dead-bg);    color: var(--dead);    border: 1px solid #d9b3b3; }
 
+    .witness-slip-cta {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-family: 'Source Serif 4', serif;
+      color: var(--cta);
+      background: var(--cta-bg);
+      border: 1px solid #d9b8d4;
+      border-radius: 2rem;
+      padding: 0.3rem 1rem;
+      text-decoration: none;
+      margin-bottom: 0.9rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .witness-slip-cta:hover {
+      background: #f0dded;
+      border-color: var(--cta);
+    }
+
     .synopsis {
       font-size: 0.87rem;
       color: var(--muted);
@@ -325,7 +345,6 @@
   <div class="filters" id="filters">
     <button class="filter-btn active" data-filter="all">All Bills</button>
     <button class="filter-btn" data-filter="104">104th GA (Current)</button>
-    <button class="filter-btn" data-filter="103">103rd GA (Past)</button>
     <button class="filter-btn" data-filter="passed">Passed into Law</button>
     <button class="filter-btn" data-filter="active">Active / Pending</button>
   </div>
@@ -335,7 +354,7 @@
   <div id="bill-list"></div>
 
   <footer>
-    <span>Data sourced from <a href="https://ilga.gov" target="_blank">ILGA.gov</a> · Updated automatically each Monday.</span>
+    <span>Data sourced from <a href="https://ilga.gov" target="_blank">ILGA.gov</a> · Updated automatically each day.</span>
     <span>CU Humane Society · <a href="https://cuhumane.org" target="_blank">cuhumane.org</a></span>
   </footer>
 
@@ -410,18 +429,16 @@
         ${bill.status_date ? `<span>Last action: ${bill.status_date}</span>` : ""}
       </div>
 
-      ${bill.synopsis ? `<p class="synopsis">${bill.synopsis.length > 280 ? bill.synopsis.slice(0, 280) + "…" : bill.synopsis}</p>` : ""}
-
-      <button class="detail-toggle" onclick="toggleDetail(this)">
-        <i class="arrow">▶</i> View full details
-      </button>
+      ${bill.witness_slip_url ? `<a class="witness-slip-cta" href="${bill.witness_slip_url}" target="_blank">✍ File a Witness Slip</a>` : ""}
+      
+      <button class="detail-toggle" onclick="toggleDetail(this)">▶ View full details</button>
 
       <div class="detail-panel">
 
-        ${bill.synopsis && bill.synopsis.length > 280 ? `
+        ${bill.synopsis ? `
         <div class="detail-section">
-          <div class="detail-label">Full Summary</div>
-          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7;">${bill.synopsis}</p>
+          <div class="detail-label">Summary</div>
+          <p style="font-size:0.85rem; color:var(--muted); line-height:1.7; font-style:italic;">${bill.synopsis}</p>
         </div>` : ""}
 
         ${cosponsors.length > 0 ? `
@@ -463,8 +480,7 @@
     const panel = btn.nextElementSibling;
     const isOpen = panel.classList.contains("visible");
     panel.classList.toggle("visible", !isOpen);
-    btn.classList.toggle("open", !isOpen);
-    btn.childNodes[1].textContent = isOpen ? " View full details" : " Hide details";
+    btn.textContent = isOpen ? "▶ View full details" : "▼ Hide details";
   }
 
   // ── Filter buttons ────────────────────────────────────────────────────────
@@ -483,7 +499,6 @@
   function filterBills(bills, filter) {
     if (filter === "all")    return bills;
     if (filter === "104")    return bills.filter(b => sessionKey(b) === "104");
-    if (filter === "103")    return bills.filter(b => sessionKey(b) === "103");
     if (filter === "passed") return bills.filter(b => statusClass(b.current_status) === "status-passed");
     if (filter === "active") return bills.filter(b => statusClass(b.current_status) === "status-pending");
     return bills;
@@ -513,7 +528,7 @@
 
       document.getElementById("loading").style.display = "none";
       document.getElementById("last-updated").textContent =
-        `${allBills.length} bills tracked · Data refreshes automatically each Monday`;
+        `${allBills.length} bills tracked · Data refreshes automatically each day.`;
 
       renderList(allBills);
     } catch (err) {
