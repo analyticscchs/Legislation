@@ -430,6 +430,8 @@ def scrape_bill(bill):
         "bill_page_url":    build_bill_page_url(bill),
         "fulltext_url":     build_fulltext_url(bill),
         "witness_slip_url": get_witness_slip_url(bill),
+        "hearing_imminent": "Assigned to" in (xml_data["last_action"] or ""),
+        
     }
 
 
