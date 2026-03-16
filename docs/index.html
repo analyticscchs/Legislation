@@ -340,6 +340,11 @@
     <div class="meta-bar">
       <span id="last-updated">Loading data…</span>
     </div>
+
+    <div class="explainer">
+      <strong>Want to make your voice heard?</strong> When a bill is scheduled for a committee hearing, file a witness slip. Witness slips are a quick, official way to show your support on the record. They make a big difference! Unfortunately there is usually only a small window to submit them. Look for the 📋 symbol next to a bill's name, which means a committee has been assigned, and hearing has been scheduled. To file: visit the bill's status page (linked in each card), click the committee name, find the hearing, and click "Details". All of the bills for that committee hearing will be listed. On the far left, there will be a little [+] symbol. This will allow you to create a witness slip. Fill out the form, and submit! Slips may not open until close to the hearing date, so check back if the link isn't active yet.
+    </div>
+    
   </header>
 
   <div class="filters" id="filters">
@@ -427,7 +432,7 @@
         ${bill.primary_sponsor ? `<span>Sponsored by ${bill.primary_sponsor}${bill.sponsor_district && !bill.sponsor_district.includes("GA") ? ", " + bill.sponsor_district + " District" : ""}</span>` : ""}
         ${bill.committee && session === "104" ? `<span>${bill.committee}</span>` : ""}
         ${bill.status_date ? `<span>Last action: ${bill.status_date}</span>` : ""}
-        ${bill.hearing_imminent ? `<span>📋 Witness slip may be open</span>` : ""}
+        ${bill.hearing_imminent ? `<span>📋 Witness slip may be open. Follow link to the Committee Page to submit a witness slip under the hearing section. </span>` : ""}
       </div>
 
       ${bill.witness_slip_url ? `<a class="witness-slip-cta" href="${bill.witness_slip_url}" target="_blank">✍ File a Witness Slip</a>` : ""}
