@@ -427,6 +427,7 @@
         ${bill.primary_sponsor ? `<span>Sponsored by ${bill.primary_sponsor}${bill.sponsor_district && !bill.sponsor_district.includes("GA") ? ", " + bill.sponsor_district + " District" : ""}</span>` : ""}
         ${bill.committee && session === "104" ? `<span>${bill.committee}</span>` : ""}
         ${bill.status_date ? `<span>Last action: ${bill.status_date}</span>` : ""}
+        ${bill.hearing_imminent ? `<span>📋 Witness slip may be open</span>` : ""}
       </div>
 
       ${bill.witness_slip_url ? `<a class="witness-slip-cta" href="${bill.witness_slip_url}" target="_blank">✍ File a Witness Slip</a>` : ""}
