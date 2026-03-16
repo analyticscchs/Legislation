@@ -416,7 +416,7 @@
 
     card.innerHTML = `
       <div class="bill-header">
-        <div class="bill-name">${bill.friendly_name || bill.bill_id}</div>
+        <div class="bill-name">${bill.friendly_name || bill.bill_id}${bill.hearing_imminent ? ' 📋' : ''}</div>
         <div class="bill-id-tag">${bill.bill_id} · ${bill.session || ""}</div>
       </div>
 
