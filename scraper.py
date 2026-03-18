@@ -38,15 +38,15 @@ BASE_URL = "https://www.ilga.gov"
 COMMITTEE_URLS = {
     # House
     "Rules Committee":                          "https://www.ilga.gov/house/committees/members/3066",
-    "Agriculture & Conservation Committee":     "https://www.ilga.gov/house/committees/members/3067",
-    "Judiciary - Criminal Committee":           "https://www.ilga.gov/house/committees/members/3076",
-    "Environment & Energy Committee":           "https://www.ilga.gov/house/committees/members/3072",
-    "Human Services Committee":                 "https://www.ilga.gov/house/committees/members/3074",
+    "Agriculture & Conservation Committee":     "https://www.ilga.gov/house/committees/members/3081",
+    "Judiciary - Criminal Committee":           "https://www.ilga.gov/house/committees/members/3098",
+    "Environment & Energy Committee":           "https://www.ilga.gov/house/committees/members/3096",
+    "Human Services Committee":                 "https://www.ilga.gov/house/committees/members/3061",
     # Senate
     "Assignments":                              "https://www.ilga.gov/senate/committees/members/3086",
-    "Agriculture":                              "https://www.ilga.gov/senate/committees/members/3087",
-    "Judiciary":                                "https://www.ilga.gov/senate/committees/members/3093",
-    "Executive":                                "https://www.ilga.gov/senate/committees/members/3091",
+    "Agriculture":                              "https://www.ilga.gov/senate/committees/members/3069",
+    "Judiciary":                                "https://www.ilga.gov/senate/committees/members/3089",
+    "Executive":                                "https://www.ilga.gov/senate/committees/members/3072",
 }
 
 # ---------------------------------------------------------------------------
