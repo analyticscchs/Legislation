@@ -42,6 +42,7 @@ COMMITTEE_URLS = {
     "Judiciary - Criminal Committee":           "https://www.ilga.gov/house/committees/members/3098",
     "Environment & Energy Committee":           "https://www.ilga.gov/house/committees/members/3096",
     "Human Services Committee":                 "https://www.ilga.gov/house/committees/members/3061",
+    " Health Care Licenses Committee":          "https://www.ilga.gov/house/committees/members/3092",
     # Senate
     "Assignments":                              "https://www.ilga.gov/senate/committees/members/3086",
     "Agriculture":                              "https://www.ilga.gov/senate/committees/members/3069",
