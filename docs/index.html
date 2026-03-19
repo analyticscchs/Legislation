@@ -4,8 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Illinois Animal Welfare Legislation Tracker</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
-  <style>
+<style>
+  @font-face {
+    font-family: 'Glacial Indifference';
+    src: url('fonts/GlacialIndifference-Regular.woff2') format('woff2'),
+         url('fonts/GlacialIndifference-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Glacial Indifference';
+    src: url('fonts/GlacialIndifference-Bold.woff2') format('woff2'),
+         url('fonts/GlacialIndifference-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+  }
+<style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -31,7 +45,7 @@
     body {
       background: var(--cream);
       color: var(--ink);
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: 'Glacial Indifference', sans-serif;
       font-weight: 300;
       line-height: 1.7;
       padding: 2rem 1rem 4rem;
@@ -109,7 +123,7 @@
     }
 
     .filter-btn {
-      font-family: 'Source Serif 4', serif;
+      font-family: 'Glacial Indifference', sans-serif;
       font-size: 0.78rem;
       padding: 0.35rem 0.9rem;
       border: 1px solid var(--rule);
@@ -155,7 +169,7 @@
     }
 
     .bill-name {
-      font-family: 'Playfair Display', Georgia, serif;
+      font-family: 'Glacial Indifference', sans-serif;
       font-size: 1.15rem;
       font-weight: 600;
       color: var(--ink);
@@ -203,7 +217,7 @@
     .witness-slip-cta {
       display: inline-block;
       font-size: 0.8rem;
-      font-family: 'Source Serif 4', serif;
+      font-family: 'Glacial Indifference', sans-serif;
       color: var(--cta);
       background: var(--cta-bg);
       border: 1px solid #d9b8d4;
